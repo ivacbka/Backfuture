@@ -1,18 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ActionMarker : MonoBehaviour
 {
+	public event Action OnClick;
+
+	public void Clicked()
+	{
+		if(OnClick != null)
+			OnClick();
+	}
 	public Text text;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

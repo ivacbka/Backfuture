@@ -22,16 +22,15 @@ public class Game : MonoBehaviour
 	
 	private class SpawnAction : PlayerAction
 	{
+		public Vector3 From;
 	}
 	
 	private abstract class PlayerAction
 	{
 		public int PlayerId = 0;
 		public int CopyId = 0;
-		public Vector3 From;
 		public int ActionPointsPrice = 0;
 		public int ActionPointsInitial = 0;
-		public GameObject ActionMarker;
 	}
 	
 	private class DiedAction : PlayerAction
@@ -41,7 +40,7 @@ public class Game : MonoBehaviour
 	
 	private class MoveAction : PlayerAction
 	{
-		public Vector3 To;
+		public Vector3 Direction;
 	}
 	
 	private class AttackAction : PlayerAction
@@ -54,10 +53,11 @@ public class Game : MonoBehaviour
 		public List<PlayerAction> Actions = new List<PlayerAction>();
 	}
 
+	public LineRenderer Trail;
 	public Transform StartPosition;
 	public Player player;
 	public Text ActionPointsLeftText;
-	public int DistancePerActionPoint = 10;
+	public int ActionPointsPerMove = 10;
 	public int ActionPointsPerAttack = 10;
 	public int ActionPointsPerTurn = 100;
 	public int FlashBackTurnsCount = 3;
@@ -65,7 +65,9 @@ public class Game : MonoBehaviour
 	public Slider TimeSlider;
 	private Dictionary<int, Player> _playerGenerations = new Dictionary<int, Player>();
 	private List<PlayerTurn> _playerTurns = new List<PlayerTurn>();
+	private List<LineRenderer> _trails = new List<LineRenderer>();
 	private int CurrentTurn = -1;
+	private int _trailsTurn = -1;
 	
 	public ActionMarker _currentActionTarget;
 	private GameState _state;
@@ -85,9 +87,84 @@ public class Game : MonoBehaviour
 	}
 	
 	private int _currentPlayPosition = 0;
-	private int _currentPlayTurn = 0;
 	private int playSpeed = 1;
 
+	private List<ActionMarker> _markers = new List<ActionMarker>();
+
+	private LineRenderer GenerateTrail(int APFrom, int APTo, int gen, Color col)
+	{
+		var trail = Instantiate(Trail, Trail.transform.parent);
+		var positions = new List<Vector3>();
+		CalculateSimulation(APFrom);
+		positions.Add(_playerGenerations[gen].transform.position);
+		
+		for (int i = APFrom; i <= APTo;i++)
+		{
+			for (int j = 0; j <= _currentCopyId; j++)
+			{
+				CalculateSimulationStep(i / (ActionPointsPerTurn + 1), i % (ActionPointsPerTurn + 1), j);
+			}
+			positions.Add(_playerGenerations[gen].transform.position);
+		}
+		trail.positionCount = positions.Count;
+		trail.SetPositions(positions.ToArray());
+		var gradient = new Gradient();
+		gradient.SetKeys(
+			(new List<GradientColorKey>{new GradientColorKey(col, 0), new GradientColorKey(col, 1)}).ToArray(),
+			(new List<GradientAlphaKey>{new GradientAlphaKey(0.25f, 0), new GradientAlphaKey(0.75f, 1)}).ToArray());
+		trail.colorGradient = gradient;
+		return trail;
+	}
+	public void BuildTrails(int turn, bool forceRebuild = false)
+	{
+		if (_trailsTurn != turn || forceRebuild)
+		{
+			_trailsTurn = turn;
+			_trails.ForEach(tr => Destroy(tr.gameObject));
+			_trails.Clear();
+			
+			if (turn > 0)
+			{
+				_trails.Add(GenerateTrail(0, turn * ActionPointsPerTurn, 0, Color.white));
+			}
+			
+			if (turn + 1 < CurrentTurn)
+			{
+				_trails.Add(GenerateTrail((turn + 1) * ActionPointsPerTurn,
+					(CurrentTurn + 1) * ActionPointsPerTurn - _currentActionPoints, 0, Color.black));
+			}
+			_trails.Add(GenerateTrail(turn * ActionPointsPerTurn, (turn + 1) * ActionPointsPerTurn, 0, Color.green));
+		}
+	}
+	
+	public void UpdatePossibleActions()
+	{
+		BuildTrails(CurrentTurn, true);
+		_markers.ForEach(m =>
+		{
+			m.gameObject.SetActive(_currentActionPointsLeft > 0);
+			Color col = Color.white;
+			switch (_state)
+			{
+					case GameState.Move:col = Color.green;break;
+					case GameState.Attack: col = Color.red;break;
+			}
+			m.GetComponent<Image>().color = col;
+		});
+		if (_currentActionPointsLeft > 0)
+		{
+			//left right up bottom
+			Vector3 pos = GetLastPlayerPosition(_currentPlayerId, _currentCopyId);
+			_markers[0].transform.position = pos + Vector3.right * GridStep;
+			_markers[1].transform.position = pos + Vector3.left * GridStep;
+			_markers[2].transform.position = pos + Vector3.up * GridStep;
+			_markers[3].transform.position = pos + Vector3.down * GridStep;
+		}
+		
+		CalculateSimulation((int)TimeSlider.maxValue);
+		LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
+	}
+	
 	public void OnFlashback()
 	{
 		FinalizeTurn();
@@ -97,8 +174,9 @@ public class Game : MonoBehaviour
 		_playerGenerations[_currentCopyId].text.text = _currentCopyId.ToString();
 		CurrentTurn = Mathf.Max(0, CurrentTurn - FlashBackTurnsCount);
 		_currentActionPoints = ActionPointsPerTurn;
-		OnSpawnAction(_currentPlayerId, _currentCopyId, GetPlayerPositionAt(CurrentTurn + 1, 0, _currentCopyId - 1));
+		//OnSpawnAction(_currentPlayerId, _currentCopyId, GetPlayerPositionAt(CurrentTurn + 1, 0, _currentCopyId - 1));
 		OnSliderValueChanged(CurrentTurn * ActionPointsPerTurn);
+		UpdatePossibleActions();
 	}
 
 	private void Start()
@@ -110,10 +188,23 @@ public class Game : MonoBehaviour
 		
 		player.gameObject.SetActive(false);
 		TimeSlider.minValue = 0;
-		TimeSlider.maxValue = _currentPlayTurn * ActionPointsPerTurn + _currentPlayTurn;
+		TimeSlider.maxValue = 0;
+		_currentActionTarget.gameObject.SetActive(false);
+		for (int i = 0; i < 4; i++)
+		{
+			_markers.Add(Instantiate(_currentActionTarget, _currentActionTarget.transform.parent));
+			var mark = _markers[i];
+			_markers[i].OnClick += () =>
+			{
+				OnClickOnAction(mark);
+			};
+		}
 		//Place player on board
-		OnNextTurn();
+		CurrentTurn++;
+		_playerTurns.Add(new PlayerTurn());
+		_currentActionPoints = ActionPointsPerTurn;
 		OnSpawnAction(0, 0, player.transform.position);
+		UpdatePossibleActions();
 	}
 	
 	public Vector3 RoundVector3ToFraction(Vector3 v)
@@ -138,6 +229,7 @@ public class Game : MonoBehaviour
 		
 		FindObjectsOfType<ActionMarker>().ToList().ForEach(m => m.gameObject.SetActive(false));
 		TimeSlider.value = ((CurrentTurn + 1) * ActionPointsPerTurn);
+		BuildTrails(CurrentTurn, true);
 	}
 	
 	public void OnNextTurn()
@@ -146,34 +238,19 @@ public class Game : MonoBehaviour
 		CurrentTurn++;
 		_playerTurns.Add(new PlayerTurn());
 		_currentActionPoints = ActionPointsPerTurn;
-		
+		UpdatePossibleActions();
 	}
 
 	public Vector3 GetLastPlayerPosition(int playerId, int copyId)
 	{
-		Vector3 from = RoundVector3ToFraction(StartPosition.position);
-		for (int i = 0; i < _playerTurns.Count; i++)
-		{
-			var action = _playerTurns[i].Actions.FindLast(act => act.CopyId == copyId && act.PlayerId == playerId);
-			if (action != null)
-			{
-				if (action is MoveAction)
-				{
-					from = (action as MoveAction).To;
-				}
-				else
-				{
-					from = action.From;
-				}
-			}
-		}
-		return from;
+		CalculateSimulation((ActionPointsPerTurn - _currentActionPoints) + CurrentTurn * ActionPointsPerTurn);
+		return _playerGenerations[copyId].transform.position;
 	}
 
 	public void OnSpawnAction(int playerId, int copyId, Vector3 playerPos)
 	{
 		Vector3 from = playerPos;
-		_playerTurns[CurrentTurn].Actions.Add(new EmptyAction()
+		_playerTurns[CurrentTurn].Actions.Add(new SpawnAction()
 		{
 			From = from, 
 			CopyId = copyId, 
@@ -188,7 +265,6 @@ public class Game : MonoBehaviour
 		Vector3 from = GetLastPlayerPosition(playerId, copyId);
 		_playerTurns[CurrentTurn].Actions.Add(new EmptyAction()
 		{
-			From = from, 
 			CopyId = copyId, 
 			PlayerId = playerId,
 			ActionPointsPrice = AP,
@@ -203,13 +279,11 @@ public class Game : MonoBehaviour
 		
 		_playerTurns[CurrentTurn].Actions.Add(new MoveAction()
 		{
-			From = from, 
-			To = TargetPosition, 
+			Direction = TargetPosition - from, 
 			CopyId = copyId, 
 			PlayerId = playerId,
 			ActionPointsPrice = AP,
 			ActionPointsInitial = ActionPointsPerTurn - _currentActionPoints,
-			ActionMarker = marker.gameObject
 		});
 		
 		_currentActionPoints -= AP;
@@ -221,19 +295,17 @@ public class Game : MonoBehaviour
 		
 		_playerTurns[CurrentTurn].Actions.Add(new AttackAction()
 		{
-			From = from,
 			CopyId = copyId, 
 			PlayerId = playerId,
 			direction = (TargetPosition - from).normalized,
 			ActionPointsPrice = ActionPointsPerAttack,
 			ActionPointsInitial = ActionPointsPerTurn - _currentActionPoints,
-			ActionMarker = marker.gameObject
 		});
 		
 		_currentActionPoints -= AP;
 	}
 
-	public void OnDrag(PointerEventData eventData)
+	/*public void OnDrag(PointerEventData eventData)
 	{
 		if (_state == GameState.Move)
 		{
@@ -252,32 +324,28 @@ public class Game : MonoBehaviour
 			_currentActionTarget.text.text = ActionPointsPerAttack.ToString();
 		}
 	}
-
-	public void OnEndDrag(PointerEventData eventData)
+*/
+	public void OnCalculateMoveAction(Vector2 position)
 	{
-		if (_state == GameState.Move)
+		var pointPos = RoundVector3ToFraction(new Vector3(position.x, position.y, 0));
+		_currentActionTarget.transform.position = pointPos;
+		int AP = ActionPointsPerMove;
+		AddMotion(_currentPlayerId, _currentCopyId, AP, pointPos, null);
+	}
+	
+	public void OnCalculateAttackAction(Vector2 position)
+	{
+		var pointPos = RoundVector3ToFraction(new Vector3(position.x, position.y, 0));
+		_currentActionTarget.transform.position = pointPos;
+		int AP = ActionPointsPerMove;
+		AddAttack(_currentPlayerId, _currentCopyId, AP, pointPos, null);
+		
+	}
+	
+	/*
+	if (_state == GameState.Move)
 		{
-			var pointPos = RoundVector3ToFraction(new Vector3(eventData.position.x, eventData.position.y, 0));
-			_currentActionTarget.transform.position = pointPos;
-			int AP = Mathf.RoundToInt((pointPos 
-				- GetLastPlayerPosition(_currentPlayerId, _currentCopyId)).magnitude 
-				/ DistancePerActionPoint);
 			
-			if (AP == 0)
-				return;
-			
-			_currentActionTarget.text.text = AP.ToString();
-
-			if (AP <= _currentActionPoints)
-			{
-				AddMotion(_currentPlayerId, _currentCopyId, AP, pointPos, Instantiate(_currentActionTarget, _currentActionTarget.transform.parent));
-				_currentActionTarget.transform.SetAsLastSibling();
-				_currentActionTarget.gameObject.SetActive(false);
-			}
-			else
-			{
-				_currentActionTarget.text.text = "NotEnough AP";
-			}
 		}
 
 		if (_state == GameState.Attack)
@@ -299,23 +367,38 @@ public class Game : MonoBehaviour
 				_currentActionTarget.text.text = "NotEnough AP";
 			}
 		}
+	}*/
+
+	public void OnClickOnAction(ActionMarker button)
+	{
+		if (_state == GameState.Move)
+		{
+			OnCalculateMoveAction(button.transform.position);
+		}
+
+		if (_state == GameState.Attack)
+		{
+			OnCalculateAttackAction(button.transform.position);
+		}
+		UpdatePossibleActions();
 	}
 
 	public void OnMoveMode()
 	{
 		_state = GameState.Move;
+		UpdatePossibleActions();
 	}
 
 	public void OnAttackMode()
 	{
 		_state = GameState.Attack;
+		UpdatePossibleActions();
 	}
 
 	public void OnPlayMode()
 	{
 		_state = GameState.Play;
-		_currentPlayPosition = 0;
-		_currentPlayTurn = 0;
+		_currentPlayPosition = -1;
 	}
 
 	public void ResetTurn()
@@ -324,21 +407,27 @@ public class Game : MonoBehaviour
 		_playerTurns[CurrentTurn].Actions.RemoveAll(act =>
 		{
 			bool res = (!(act is SpawnAction)) && act.CopyId == _currentCopyId && act.PlayerId == _currentPlayerId;
-			if (res)
-			{
-				Destroy(act.ActionMarker);
-			}
 			return res;
 		});
+		UpdatePossibleActions();
 	}
 
 	public void OnSliderValueChanged(float val)
 	{
+		BuildTrails(_currentPlayPosition / (ActionPointsPerTurn + 1));
+		//if (_state == GameState.Play)
+		//	return;
+		
+		_currentPlayPosition = Mathf.RoundToInt(val);
+		CalculateSimulation(Mathf.RoundToInt(val));
+	}
+
+	private void CalculateSimulation(int stepsCount)
+	{
 		int simulateTurn = 0;
 		int simulatePosition = 0;
-		_state = GameState.SliderSimulate;
 		
-		for (int i = 0; i <= Mathf.RoundToInt(val); i++)
+		for (int i = 0; i <= stepsCount; i++)
 		{
 			if (_playerTurns.Count == simulateTurn)
 			{
@@ -347,8 +436,10 @@ public class Game : MonoBehaviour
 			
 			for (int j = 0; j <= _currentCopyId; j++)
 			{
-				CalculateSimulation(simulateTurn, simulatePosition, j);
+				CalculateSimulationStep(simulateTurn, simulatePosition, j);
 			}
+			
+			//Physics2D.Simulate(0.01f);
 			
 			if (simulatePosition == ActionPointsPerTurn)
 			{
@@ -360,7 +451,7 @@ public class Game : MonoBehaviour
 		}
 	}
 
-	private void CalculateSimulation(int turnNum, int position, int gen)
+	private void CalculateSimulationStep(int turnNum, int position, int gen)
 	{
 		var action = _playerTurns[turnNum].Actions.Find(turn =>
 			(turn.CopyId == gen) &&
@@ -373,56 +464,38 @@ public class Game : MonoBehaviour
 		if (action is MoveAction)
 		{
 			var move = action as MoveAction;
-			var pos = move.From + (position - move.ActionPointsInitial) * (move.To - move.From) / move.ActionPointsPrice;
-			_playerGenerations[gen].transform.position = pos;
-			
+			var posDelta = move.Direction / move.ActionPointsPrice;
+			_playerGenerations[gen].transform.position += posDelta;
 		}
 		else if(action is AttackAction)
 		{
 			_playerGenerations[gen].Arrow.SetActive(true);
 			_playerGenerations[gen].Arrow.transform.rotation = Quaternion.FromToRotation(Vector3.up, (action as AttackAction).direction);
 			_playerGenerations[gen].Arrow.transform.hasChanged = true;
-			_playerGenerations[gen].transform.position = action.From;
 		}
-		else if (action != null)
+		else if (action is SpawnAction)
 		{
-			_playerGenerations[gen].transform.position = action.From;
+			_playerGenerations[gen].transform.position = (action as SpawnAction).From;
 		}
 		
 		_playerGenerations[gen].gameObject.SetActive(action != null);
 	}
-
-	private Vector3 GetPlayerPositionAt(int turnNum, int position, int gen)
-	{
-		var action = _playerTurns[turnNum].Actions.Find(turn =>
-			(turn.CopyId == gen) &
-			((turn.ActionPointsPrice > 0) &&
-			 (turn.ActionPointsInitial <= position) &&
-			 (turn.ActionPointsInitial + turn.ActionPointsPrice) >= position)
-			|| (turn.ActionPointsPrice == 0 && turn.ActionPointsInitial == position));
-
-		if (action is MoveAction)
-		{
-			var move = action as MoveAction;
-			var pos = move.From + (position - move.ActionPointsInitial) * (move.To - move.From) / move.ActionPointsPrice;
-			return pos;
-		}
-		else if (action != null)
-		{
-			return action.From;
-		}
-		
-		return Vector3.zero;
-	}
 	
-	public void FixedUpdate()
+	public void Update()
 	{
 		if (_state == GameState.Play)
 		{
 			if (Mathf.RoundToInt(TimeSlider.maxValue) > _currentPlayPosition++)
 			{
+				//for (int j = 0; j <= _currentCopyId; j++)
+				//{
+				//	CalculateSimulationStep(_currentPlayPosition / (ActionPointsPerTurn + 1), _currentPlayPosition % (ActionPointsPerTurn + 1), j);
+				//}
 				TimeSlider.value = _currentPlayPosition;
-				_state = GameState.Play;
+			}
+			else
+			{
+				_state = GameState.Move;
 			}
 		}
 	}

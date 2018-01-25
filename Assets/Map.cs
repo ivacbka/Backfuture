@@ -14,17 +14,17 @@ public class Map : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandl
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		_game.OnDrag(eventData);
+		//_game.OnDrag(eventData);
 	}
 	
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		_game.OnEndDrag(eventData);
+		//_game.OnEndDrag(eventData);
 	}
 	
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		_game.OnDrag(eventData);
+		//_game.OnDrag(eventData);
 	}
 
 	public void OnEndDrag(PointerEventData eventData)
@@ -33,6 +33,6 @@ public class Map : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandl
 	
 	public void OnDrag(PointerEventData eventData)
 	{
-		_game.OnDrag(eventData);
+		//_game.OnDrag(eventData);
 	}
 }

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfPlayerTurn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PlayerTurn>
+    <Actions>
+      <PlayerAction xsi:type="SpawnAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>0</CopyId>
+        <ActionPointsPrice>0</ActionPointsPrice>
+        <ActionPointsInitial>0</ActionPointsInitial>
+        <From>
+          <x>-240</x>
+          <y>0</y>
+          <z>0</z>
+        </From>
+      </PlayerAction>
+      <PlayerAction xsi:type="MoveAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>0</CopyId>
+        <ActionPointsPrice>33</ActionPointsPrice>
+        <ActionPointsInitial>0</ActionPointsInitial>
+        <Direction>
+          <x>60</x>
+          <y>0</y>
+          <z>0</z>
+        </Direction>
+      </PlayerAction>
+      <PlayerAction xsi:type="MoveAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>0</CopyId>
+        <ActionPointsPrice>33</ActionPointsPrice>
+        <ActionPointsInitial>33</ActionPointsInitial>
+        <Direction>
+          <x>61.81836</x>
+          <y>0</y>
+          <z>0</z>
+        </Direction>
+      </PlayerAction>
+      <PlayerAction xsi:type="MoveAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>0</CopyId>
+        <ActionPointsPrice>33</ActionPointsPrice>
+        <ActionPointsInitial>66</ActionPointsInitial>
+        <Direction>
+          <x>60.05487</x>
+          <y>0</y>
+          <z>0</z>
+        </Direction>
+      </PlayerAction>
+      <PlayerAction xsi:type="SpawnAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>1</CopyId>
+        <ActionPointsPrice>0</ActionPointsPrice>
+        <ActionPointsInitial>0</ActionPointsInitial>
+        <From>
+          <x>60</x>
+          <y>120</y>
+          <z>0</z>
+        </From>
+      </PlayerAction>
+      <PlayerAction xsi:type="EmptyAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>1</CopyId>
+        <ActionPointsPrice>99</ActionPointsPrice>
+        <ActionPointsInitial>0</ActionPointsInitial>
+      </PlayerAction>
+      <PlayerAction xsi:type="EmptyAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>0</CopyId>
+        <ActionPointsPrice>99</ActionPointsPrice>
+        <ActionPointsInitial>99</ActionPointsInitial>
+      </PlayerAction>
+    </Actions>
+  </PlayerTurn>
+  <PlayerTurn>
+    <Actions>
+      <PlayerAction xsi:type="AttackAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>0</CopyId>
+        <ActionPointsPrice>33</ActionPointsPrice>
+        <ActionPointsInitial>0</ActionPointsInitial>
+        <direction>
+          <x>-0.0008954363</x>
+          <y>0.999999642</y>
+          <z>0</z>
+        </direction>
+      </PlayerAction>
+      <PlayerAction xsi:type="AttackAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>0</CopyId>
+        <ActionPointsPrice>33</ActionPointsPrice>
+        <ActionPointsInitial>33</ActionPointsInitial>
+        <direction>
+          <x>-1</x>
+          <y>0</y>
+          <z>0</z>
+        </direction>
+      </PlayerAction>
+      <PlayerAction xsi:type="EmptyAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>0</CopyId>
+        <ActionPointsPrice>33</ActionPointsPrice>
+        <ActionPointsInitial>66</ActionPointsInitial>
+      </PlayerAction>
+      <PlayerAction xsi:type="EmptyAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>1</CopyId>
+        <ActionPointsPrice>99</ActionPointsPrice>
+        <ActionPointsInitial>0</ActionPointsInitial>
+      </PlayerAction>
+      <PlayerAction xsi:type="EmptyAction">
+        <PlayerId>0</PlayerId>
+        <CopyId>0</CopyId>
+        <ActionPointsPrice>99</ActionPointsPrice>
+        <ActionPointsInitial>99</ActionPointsInitial>
+      </PlayerAction>
+    </Actions>
+  </PlayerTurn>
+  <PlayerTurn>
+    <Actions />
+  </PlayerTurn>
+  <PlayerTurn>
+    <Actions />
+  </PlayerTurn>
+</ArrayOfPlayerTurn>

@@ -1,10 +1,53 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Runtime.Serialization;
+
+
+public static class Vector3Utils
+{
+	public static Vector3 ToVector(this Vector3Wrapper wr)
+	{
+		return new Vector3(wr.x, wr.y, wr.z);
+	}
+	
+	public static Vector3Wrapper ToWrapper(this Vector3 v)
+	{
+		return new Vector3Wrapper(v);
+	}
+}
+
+[Serializable]
+public class Vector3Wrapper
+{
+	public Vector3Wrapper()
+	{
+	}
+	
+	public Vector3Wrapper(float _x, float _y, float _z)
+	{
+		x = _x;
+		y = _y;
+		z = _z;
+	}
+
+	public Vector3Wrapper(Vector3 v)
+	{
+		x = v.x;
+		y = v.y;
+		z = v.z;
+	}
+
+	public float x;
+	public float y;
+	public float z;
+}
 
 public class Game : MonoBehaviour
 {
@@ -13,19 +56,23 @@ public class Game : MonoBehaviour
 		Move,
 		Attack,
 		Play,
+		Flashback,
 		SliderSimulate
 	}
-
-	private class EmptyAction : PlayerAction
+	
+	[Serializable]
+	public class EmptyAction : PlayerAction
 	{
 	}
 	
-	private class SpawnAction : PlayerAction
+	[Serializable]
+	public class SpawnAction : PlayerAction
 	{
-		public Vector3 From;
+		public Vector3Wrapper From;
 	}
 	
-	private abstract class PlayerAction
+	[Serializable]
+	public class PlayerAction
 	{
 		public int PlayerId = 0;
 		public int CopyId = 0;
@@ -33,22 +80,26 @@ public class Game : MonoBehaviour
 		public int ActionPointsInitial = 0;
 	}
 	
-	private class DiedAction : PlayerAction
+	[Serializable]
+	public class DiedAction : PlayerAction
 	{
 		
 	}
 	
-	private class MoveAction : PlayerAction
+	[Serializable]
+	public class MoveAction : PlayerAction
 	{
-		public Vector3 Direction;
+		public Vector3Wrapper Direction;
 	}
 	
-	private class AttackAction : PlayerAction
+	[Serializable]
+	public class AttackAction : PlayerAction
 	{
-		public Vector3 direction;
+		public Vector3Wrapper direction;
 	}
 	
-	private class PlayerTurn
+	[Serializable]
+	public class PlayerTurn
 	{
 		public List<PlayerAction> Actions = new List<PlayerAction>();
 	}
@@ -62,6 +113,7 @@ public class Game : MonoBehaviour
 	public int ActionPointsPerTurn = 100;
 	public int FlashBackTurnsCount = 3;
 	public float GridStep = 10;
+	public int FlashbackZoneSize = 2;
 	public Slider TimeSlider;
 	private Dictionary<int, Player> _playerGenerations = new Dictionary<int, Player>();
 	private List<PlayerTurn> _playerTurns = new List<PlayerTurn>();
@@ -98,11 +150,11 @@ public class Game : MonoBehaviour
 		CalculateSimulation(APFrom);
 		positions.Add(_playerGenerations[gen].transform.position);
 		
-		for (int i = APFrom; i <= APTo;i++)
+		for (int i = APFrom; i < APTo;i++)
 		{
 			for (int j = 0; j <= _currentCopyId; j++)
 			{
-				CalculateSimulationStep(i / (ActionPointsPerTurn + 1), i % (ActionPointsPerTurn + 1), j);
+				CalculateSimulationStep(i / (ActionPointsPerTurn), i % (ActionPointsPerTurn), j);
 			}
 			positions.Add(_playerGenerations[gen].transform.position);
 		}
@@ -122,63 +174,97 @@ public class Game : MonoBehaviour
 			_trailsTurn = turn;
 			_trails.ForEach(tr => Destroy(tr.gameObject));
 			_trails.Clear();
-			
-			if (turn > 0)
+			for (int i = 0; i <= _currentCopyId; i++)
 			{
-				_trails.Add(GenerateTrail(0, turn * ActionPointsPerTurn, 0, Color.white));
-			}
+				if (turn > 0)
+				{
+					_trails.Add(GenerateTrail(0, turn * ActionPointsPerTurn, 0, Color.white));
+				}
 			
-			if (turn + 1 < CurrentTurn)
-			{
-				_trails.Add(GenerateTrail((turn + 1) * ActionPointsPerTurn,
-					(CurrentTurn + 1) * ActionPointsPerTurn - _currentActionPoints, 0, Color.black));
+				if (turn + 1 < CurrentTurn)
+				{
+					_trails.Add(GenerateTrail((turn + 1) * ActionPointsPerTurn,
+						(CurrentTurn + 1) * ActionPointsPerTurn - _currentActionPoints, 0, Color.black));
+				}
+				_trails.Add(GenerateTrail(turn * ActionPointsPerTurn, (turn + 1) * ActionPointsPerTurn, 0, Color.green));
 			}
-			_trails.Add(GenerateTrail(turn * ActionPointsPerTurn, (turn + 1) * ActionPointsPerTurn, 0, Color.green));
 		}
 	}
 	
 	public void UpdatePossibleActions()
 	{
 		BuildTrails(CurrentTurn, true);
-		_markers.ForEach(m =>
+		
+		Vector3 pos = GetLastPlayerPosition(_currentPlayerId, _currentCopyId);
+		if (_state != GameState.Flashback)
 		{
-			m.gameObject.SetActive(_currentActionPointsLeft > 0);
-			Color col = Color.white;
-			switch (_state)
-			{
-					case GameState.Move:col = Color.green;break;
-					case GameState.Attack: col = Color.red;break;
-			}
-			m.GetComponent<Image>().color = col;
-		});
-		if (_currentActionPointsLeft > 0)
-		{
-			//left right up bottom
-			Vector3 pos = GetLastPlayerPosition(_currentPlayerId, _currentCopyId);
 			_markers[0].transform.position = pos + Vector3.right * GridStep;
 			_markers[1].transform.position = pos + Vector3.left * GridStep;
 			_markers[2].transform.position = pos + Vector3.up * GridStep;
 			_markers[3].transform.position = pos + Vector3.down * GridStep;
+			for (int i = 0; i < _markers.Count; i++)
+			{
+				_markers[i].gameObject.SetActive(_currentActionPointsLeft > 0 && i < 4);
+			}
 		}
+		else
+		{
+			int index = 0;
+			for (int i = -FlashbackZoneSize; i <= FlashbackZoneSize; i++)
+			{
+				for (int j = -FlashbackZoneSize; j <= FlashbackZoneSize; j++)
+				{
+					if(_markers.Count == index)
+						AddMarker();
+
+					_markers[index].gameObject.SetActive(true);
+					_markers[index].transform.position = pos + Vector3.right * GridStep * i + Vector3.up * GridStep * j;
+					index++;
+				}
+			}
+		}
+		
+		_markers.ForEach(m =>
+		{
+			Color col = Color.white;
+			switch (_state)
+			{
+				case GameState.Move:col = Color.green;break;
+				case GameState.Attack: col = Color.red;break;
+				case GameState.Flashback: col = Color.blue;break;
+			}
+			m.GetComponent<Image>().color = col;
+		});
 		
 		CalculateSimulation((int)TimeSlider.maxValue);
 		LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
 	}
-	
-	public void OnFlashback()
+
+	private void AddFlashback(Vector3 pos)
 	{
 		FinalizeTurn();
 		_currentCopyId++;
 		_playerGenerations[_currentCopyId] = Instantiate(player, player.transform.parent);
 		_playerGenerations[_currentCopyId].gameObject.SetActive(true);
+		_playerGenerations[_currentCopyId].transform.position = pos;
 		_playerGenerations[_currentCopyId].text.text = _currentCopyId.ToString();
 		CurrentTurn = Mathf.Max(0, CurrentTurn - FlashBackTurnsCount);
 		_currentActionPoints = ActionPointsPerTurn;
-		//OnSpawnAction(_currentPlayerId, _currentCopyId, GetPlayerPositionAt(CurrentTurn + 1, 0, _currentCopyId - 1));
+		OnSpawnAction(_currentPlayerId, _currentCopyId, pos);
 		OnSliderValueChanged(CurrentTurn * ActionPointsPerTurn);
-		UpdatePossibleActions();
 	}
 
+	private void AddMarker()
+	{
+		var newMark = Instantiate(_currentActionTarget, _currentActionTarget.transform.parent);
+		newMark.gameObject.SetActive(true);
+		_markers.Add(newMark);
+		newMark.OnClick += () =>
+		{
+			OnClickOnAction(newMark);
+		};
+	}
+	
 	private void Start()
 	{
 		player.transform.position = RoundVector3ToFraction(StartPosition.position);
@@ -192,12 +278,7 @@ public class Game : MonoBehaviour
 		_currentActionTarget.gameObject.SetActive(false);
 		for (int i = 0; i < 4; i++)
 		{
-			_markers.Add(Instantiate(_currentActionTarget, _currentActionTarget.transform.parent));
-			var mark = _markers[i];
-			_markers[i].OnClick += () =>
-			{
-				OnClickOnAction(mark);
-			};
+			AddMarker();
 		}
 		//Place player on board
 		CurrentTurn++;
@@ -252,7 +333,7 @@ public class Game : MonoBehaviour
 		Vector3 from = playerPos;
 		_playerTurns[CurrentTurn].Actions.Add(new SpawnAction()
 		{
-			From = from, 
+			From = from.ToWrapper(), 
 			CopyId = copyId, 
 			PlayerId = playerId,
 			ActionPointsPrice = 0,
@@ -279,7 +360,7 @@ public class Game : MonoBehaviour
 		
 		_playerTurns[CurrentTurn].Actions.Add(new MoveAction()
 		{
-			Direction = TargetPosition - from, 
+			Direction = (TargetPosition - from).ToWrapper(), 
 			CopyId = copyId, 
 			PlayerId = playerId,
 			ActionPointsPrice = AP,
@@ -297,7 +378,7 @@ public class Game : MonoBehaviour
 		{
 			CopyId = copyId, 
 			PlayerId = playerId,
-			direction = (TargetPosition - from).normalized,
+			direction = (TargetPosition - from).normalized.ToWrapper(),
 			ActionPointsPrice = ActionPointsPerAttack,
 			ActionPointsInitial = ActionPointsPerTurn - _currentActionPoints,
 		});
@@ -325,6 +406,12 @@ public class Game : MonoBehaviour
 		}
 	}
 */
+	public void OnCalculateFlashbackAction(Vector2 position)
+	{
+		var pointPos = RoundVector3ToFraction(new Vector3(position.x, position.y, 0));
+		_currentActionTarget.transform.position = pointPos;
+		AddFlashback(pointPos);
+	}
 	public void OnCalculateMoveAction(Vector2 position)
 	{
 		var pointPos = RoundVector3ToFraction(new Vector3(position.x, position.y, 0));
@@ -337,7 +424,7 @@ public class Game : MonoBehaviour
 	{
 		var pointPos = RoundVector3ToFraction(new Vector3(position.x, position.y, 0));
 		_currentActionTarget.transform.position = pointPos;
-		int AP = ActionPointsPerMove;
+		int AP = ActionPointsPerAttack;
 		AddAttack(_currentPlayerId, _currentCopyId, AP, pointPos, null);
 		
 	}
@@ -380,6 +467,11 @@ public class Game : MonoBehaviour
 		{
 			OnCalculateAttackAction(button.transform.position);
 		}
+		
+		if (_state == GameState.Flashback)
+		{
+			OnCalculateFlashbackAction(button.transform.position);
+		}
 		UpdatePossibleActions();
 	}
 
@@ -400,6 +492,12 @@ public class Game : MonoBehaviour
 		_state = GameState.Play;
 		_currentPlayPosition = -1;
 	}
+	
+	public void OnFlashback()
+	{
+		_state = GameState.Flashback;
+		UpdatePossibleActions();
+	}
 
 	public void ResetTurn()
 	{
@@ -414,7 +512,7 @@ public class Game : MonoBehaviour
 
 	public void OnSliderValueChanged(float val)
 	{
-		BuildTrails(_currentPlayPosition / (ActionPointsPerTurn + 1));
+		BuildTrails(_currentPlayPosition / (ActionPointsPerTurn));
 		//if (_state == GameState.Play)
 		//	return;
 		
@@ -427,7 +525,7 @@ public class Game : MonoBehaviour
 		int simulateTurn = 0;
 		int simulatePosition = 0;
 		
-		for (int i = 0; i <= stepsCount; i++)
+		for (int i = 0; i < stepsCount; i++)
 		{
 			if (_playerTurns.Count == simulateTurn)
 			{
@@ -453,31 +551,37 @@ public class Game : MonoBehaviour
 
 	private void CalculateSimulationStep(int turnNum, int position, int gen)
 	{
+		if (_playerTurns.Count <= turnNum)
+			return;
 		var action = _playerTurns[turnNum].Actions.Find(turn =>
 			(turn.CopyId == gen) &&
-			((turn.ActionPointsPrice > 0) &&
+			(((turn.ActionPointsPrice > 0) &&
 			(turn.ActionPointsInitial <= position) &&
 			(turn.ActionPointsInitial + turn.ActionPointsPrice) >= position)
-			|| (turn.ActionPointsPrice == 0 && turn.ActionPointsInitial == position));
+			|| (turn.ActionPointsPrice == 0 && turn.ActionPointsInitial == position)));
 
 		_playerGenerations[gen].Arrow.SetActive(false);
 		if (action is MoveAction)
 		{
 			var move = action as MoveAction;
-			var posDelta = move.Direction / move.ActionPointsPrice;
+			var posDelta = move.Direction.ToVector() / move.ActionPointsPrice;
 			_playerGenerations[gen].transform.position += posDelta;
 		}
 		else if(action is AttackAction)
 		{
 			_playerGenerations[gen].Arrow.SetActive(true);
-			_playerGenerations[gen].Arrow.transform.rotation = Quaternion.FromToRotation(Vector3.up, (action as AttackAction).direction);
+			_playerGenerations[gen].Arrow.transform.rotation = Quaternion.FromToRotation(Vector3.up, (action as AttackAction).direction.ToVector());
 			_playerGenerations[gen].Arrow.transform.hasChanged = true;
 		}
 		else if (action is SpawnAction)
 		{
-			_playerGenerations[gen].transform.position = (action as SpawnAction).From;
+			_playerGenerations[gen].transform.position = (action as SpawnAction).From.ToVector();
 		}
-		
+
+		if ((action == null) && _playerGenerations[gen].gameObject.activeSelf)
+		{
+			Debug.LogFormat("Playerdisabled Turn {0} Pos {1} Gen {2}", turnNum, position, gen);
+		}
 		_playerGenerations[gen].gameObject.SetActive(action != null);
 	}
 	
@@ -497,6 +601,17 @@ public class Game : MonoBehaviour
 			{
 				_state = GameState.Move;
 			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Type[] typeArray = new[] {typeof(EmptyAction), typeof(SpawnAction), typeof(PlayerAction), typeof(MoveAction), 
+				typeof(AttackAction), typeof(PlayerTurn)};
+			
+			var f = File.CreateText(Application.streamingAssetsPath + "/debug");
+			f.Write(SerializationUtils<List<PlayerTurn>>.SerializeXml(_playerTurns, typeArray));
+			f.Flush();
+			f.Close();
 		}
 	}
 }

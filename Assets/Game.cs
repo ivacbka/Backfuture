@@ -584,7 +584,7 @@ public class Game : MonoBehaviour
 			(turn.ActionPointsInitial + turn.ActionPointsPrice) >= position)
 			|| (turn.ActionPointsPrice == 0 && turn.ActionPointsInitial == position)));
 
-		_playerGenerations[gen].Arrow.SetActive(false);
+		_playerGenerations[gen].Arrow.SetActive(action is AttackAction);
 		_playerGenerations[gen].gameObject.SetActive(action != null);
 		if (action is MoveAction)
 		{

@@ -1036,8 +1036,8 @@ GameObject:
   - component: {fileID: 875921882}
   - component: {fileID: 875921881}
   - component: {fileID: 875921877}
-  - component: {fileID: 875921878}
   - component: {fileID: 875921879}
+  - component: {fileID: 875921878}
   m_Layer: 5
   m_Name: ActionMarker
   m_TagString: Untagged

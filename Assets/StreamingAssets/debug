@@ -1,761 +1,430 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ArrayOfPlayerTurn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <PlayerTurn>
-    <Actions>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>-240</x>
-          <y>0</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <Direction>
-          <x>60</x>
-          <y>0</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>33</ActionPointsInitial>
-        <Direction>
-          <x>61.81836</x>
-          <y>0</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>66</ActionPointsInitial>
-        <Direction>
-          <x>60.05487</x>
-          <y>0</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>-180</x>
-          <y>120</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>-300</x>
-          <y>0</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <Direction>
-          <x>-60</x>
-          <y>0</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>33</ActionPointsInitial>
-        <Direction>
-          <x>-61.81836</x>
-          <y>0</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>66</ActionPointsInitial>
-        <Direction>
-          <x>-60.05487</x>
-          <y>0</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>-360</x>
-          <y>-120</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <Direction>
-          <x>0</x>
-          <y>-60</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>33</ActionPointsInitial>
-        <Direction>
-          <x>0</x>
-          <y>-61.81836</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>66</ActionPointsInitial>
-        <Direction>
-          <x>0</x>
-          <y>-60.05487</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>-240</x>
-          <y>-300</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>5</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>-120</x>
-          <y>-300</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>5</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>6</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>0</x>
-          <y>-180</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>6</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>5</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>7</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>120</x>
-          <y>-180</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>7</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>5</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>6</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>240</x>
-          <y>-180</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <Direction>
-          <x>0</x>
-          <y>60</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>33</ActionPointsInitial>
-        <Direction>
-          <x>0</x>
-          <y>61.81836</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>66</ActionPointsInitial>
-        <Direction>
-          <x>0</x>
-          <y>60.0548859</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>5</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>6</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>7</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-    </Actions>
-  </PlayerTurn>
-  <PlayerTurn>
-    <Actions>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>5</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>6</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>7</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <Direction>
-          <x>0</x>
-          <y>59.9466171</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>33</ActionPointsInitial>
-        <Direction>
-          <x>0</x>
-          <y>59.99681</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>66</ActionPointsInitial>
-        <Direction>
-          <x>0</x>
-          <y>60.00154</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>5</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>6</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>7</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="SpawnAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>9</CopyId>
-        <ActionPointsPrice>0</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <From>
-          <x>-60</x>
-          <y>300</y>
-          <z>0</z>
-        </From>
-      </PlayerAction>
-    </Actions>
-  </PlayerTurn>
-  <PlayerTurn>
-    <Actions>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>5</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>6</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>7</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-        <Direction>
-          <x>-60</x>
-          <y>0.000747680664</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>33</ActionPointsInitial>
-        <Direction>
-          <x>-61.81836</x>
-          <y>-1.81843567</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="MoveAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>8</CopyId>
-        <ActionPointsPrice>33</ActionPointsPrice>
-        <ActionPointsInitial>66</ActionPointsInitial>
-        <Direction>
-          <x>-60.05487</x>
-          <y>-0.055770874</y>
-          <z>0</z>
-        </Direction>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>0</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>1</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>2</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>3</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>4</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>5</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>6</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-      <PlayerAction xsi:type="EmptyAction">
-        <PlayerId>0</PlayerId>
-        <CopyId>7</CopyId>
-        <ActionPointsPrice>99</ActionPointsPrice>
-        <ActionPointsInitial>0</ActionPointsInitial>
-      </PlayerAction>
-    </Actions>
-  </PlayerTurn>
-</ArrayOfPlayerTurn>
+<GameStateData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PlayerTurns>
+    <PlayerTurn>
+      <Actions>
+        <PlayerAction xsi:type="SpawnAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>0</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+          <From>
+            <x>-240</x>
+            <y>0</y>
+            <z>0</z>
+          </From>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+          <Direction>
+            <x>60</x>
+            <y>0</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>-180</x>
+            <y>0</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>33</ActionPointsInitial>
+          <Direction>
+            <x>60</x>
+            <y>0</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>-120</x>
+            <y>0</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>66</ActionPointsInitial>
+          <Direction>
+            <x>60</x>
+            <y>0</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>-60</x>
+            <y>0</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+      </Actions>
+    </PlayerTurn>
+    <PlayerTurn>
+      <Actions>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+          <Direction>
+            <x>0</x>
+            <y>-60</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>-60</x>
+            <y>-60</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>33</ActionPointsInitial>
+          <Direction>
+            <x>0</x>
+            <y>-60</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>-60</x>
+            <y>-120</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>66</ActionPointsInitial>
+          <Direction>
+            <x>0</x>
+            <y>-60</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>-60</x>
+            <y>-180</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="SpawnAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>3</CopyId>
+          <ActionPointsPrice>0</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+          <From>
+            <x>240</x>
+            <y>60</y>
+            <z>0</z>
+          </From>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>3</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+          <Direction>
+            <x>60</x>
+            <y>0</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>300</x>
+            <y>60</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>3</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>33</ActionPointsInitial>
+          <Direction>
+            <x>60</x>
+            <y>0</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>360</x>
+            <y>60</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>3</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>66</ActionPointsInitial>
+          <Direction>
+            <x>60</x>
+            <y>0</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>420</x>
+            <y>60</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>1</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>2</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+      </Actions>
+    </PlayerTurn>
+    <PlayerTurn>
+      <Actions>
+        <PlayerAction xsi:type="AttackAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+          <direction>
+            <x>1</x>
+            <y>-2.54313164E-07</y>
+            <z>0</z>
+          </direction>
+        </PlayerAction>
+        <PlayerAction xsi:type="AttackAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>33</ActionPointsInitial>
+          <direction>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+          </direction>
+        </PlayerAction>
+        <PlayerAction xsi:type="AttackAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>66</ActionPointsInitial>
+          <direction>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+          </direction>
+        </PlayerAction>
+        <PlayerAction xsi:type="SpawnAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>2</CopyId>
+          <ActionPointsPrice>0</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+          <From>
+            <x>120</x>
+            <y>60</y>
+            <z>0</z>
+          </From>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>2</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>1</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>1</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>2</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>3</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>1</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>2</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+      </Actions>
+    </PlayerTurn>
+    <PlayerTurn>
+      <Actions>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+          <Direction>
+            <x>60</x>
+            <y>0</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>0</x>
+            <y>-180</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>33</ActionPointsInitial>
+          <Direction>
+            <x>60</x>
+            <y>0</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>60</x>
+            <y>-180</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="MoveAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>33</ActionPointsPrice>
+          <ActionPointsInitial>66</ActionPointsInitial>
+          <Direction>
+            <x>60</x>
+            <y>0</y>
+            <z>0</z>
+          </Direction>
+          <CanMove>true</CanMove>
+          <TargetPosition>
+            <x>120</x>
+            <y>-180</y>
+            <z>0</z>
+          </TargetPosition>
+        </PlayerAction>
+        <PlayerAction xsi:type="SpawnAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>1</CopyId>
+          <ActionPointsPrice>0</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+          <From>
+            <x>240</x>
+            <y>-60</y>
+            <z>0</z>
+          </From>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>1</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>1</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>2</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+      </Actions>
+    </PlayerTurn>
+    <PlayerTurn>
+      <Actions>
+        <PlayerAction xsi:type="EmptyAction">
+          <PlayerId>0</PlayerId>
+          <CopyId>0</CopyId>
+          <ActionPointsPrice>99</ActionPointsPrice>
+          <ActionPointsInitial>0</ActionPointsInitial>
+        </PlayerAction>
+      </Actions>
+    </PlayerTurn>
+    <PlayerTurn>
+      <Actions />
+    </PlayerTurn>
+    <PlayerTurn>
+      <Actions />
+    </PlayerTurn>
+  </PlayerTurns>
+  <CurrentTurn>3</CurrentTurn>
+  <CurrentPlayerId>0</CurrentPlayerId>
+  <CurrentCopyId>3</CurrentCopyId>
+  <CurrentActionPointsLeft>99</CurrentActionPointsLeft>
+</GameStateData>

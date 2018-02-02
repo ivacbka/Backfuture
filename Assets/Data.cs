@@ -65,13 +65,13 @@ public class PlayerTurn
 public class EmptyAction : PlayerAction
 {
 }
-	
+
 [Serializable]
 public class SpawnAction : PlayerAction
 {
 	public Vector3Wrapper From;
 }
-	
+
 [Serializable]
 public class PlayerAction
 {
@@ -80,11 +80,11 @@ public class PlayerAction
 	public int ActionPointsPrice = 0;
 	public int ActionPointsInitial = 0;
 }
-	
+
 [Serializable]
 public class DiedAction : PlayerAction
 {
-		
+	
 }
 
 [Serializable]
@@ -104,6 +104,12 @@ public class MoveAction : PlayerAction
 	
 [Serializable]
 public class AttackAction : PlayerAction
+{
+	public Vector3Wrapper Direction;
+}
+
+[Serializable]
+public class PushAction : PlayerAction
 {
 	public Vector3Wrapper Direction;
 }
